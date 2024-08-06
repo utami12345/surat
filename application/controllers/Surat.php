@@ -55,7 +55,7 @@ class Surat extends CI_Controller {
             $this->Surat_model->insert($data);
 
             // Redirect ke halaman index atau halaman lain
-            redirect('surat/index');
+            redirect('surat');
         }
     }
 
@@ -84,7 +84,7 @@ class Surat extends CI_Controller {
             );
     
             $this->Surat_model->update_surat($id_surat, $suratData);
-            redirect('surat/index');
+            redirect('surat');
         }
     }    
     private function do_upload() {
@@ -100,13 +100,7 @@ class Surat extends CI_Controller {
         }
     }
     public function hapus($id_surat) {
-        // Specify the condition for deletion
-        $where = array('id_surat' => $id_surat);
-        
-        // Call model function to delete record
-        $this->Surat_model->hapus($where, 'surat');
-        
-        // Redirect back to the main page
+        $this->Surat_model->hapus($id_surat);
         redirect('surat');
     }
 
