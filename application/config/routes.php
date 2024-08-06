@@ -49,6 +49,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'surat';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['surat/create'] = 'surat/create';
+$route['surat/store'] = 'surat/store'; // URL for storing a new surat
+$route['surat'] = 'surat/index';
+$route['surat/surat_edit/(:num)'] = 'surat/surat_edit/$1'; // Route untuk mengedit surat
+$route['surat/update'] = 'surat/update';
+$route['surat/hapus/(:num)'] = 'surat/hapus/$1'; // Route untuk menghapus surat
