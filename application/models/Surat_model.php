@@ -39,8 +39,8 @@ class Surat_model extends CI_Model {
     }
 
     // Function to delete a specific surat by id
-    public function hapus($where, $table) {
-        $this->db->where($where);
-        return $this->db->delete($table);
+    public function hapus($id_surat) {
+        $this->db->where('id_surat', $id_surat);
+        return $this->db->delete('surat');
     }
 }
