@@ -22,15 +22,6 @@ class Surat_model extends CI_Model {
         $query = $this->db->get_where('surat', array('id_surat' => $id_surat));
         return $query->row_array();
     }
-    
-    public function surat_edit($id_surat) {
-        $data['surat'] = $this->Surat_model->get_surat_by_id($id_surat);
-        if ($data['surat']) {
-            $this->load->view('surat/edit', $data); 
-        } else {
-            show_404(); 
-        }
-    }
 
     public function update_surat($id_surat, $data) {
         $this->db->where('id_surat', $id_surat);
@@ -50,13 +41,13 @@ class Surat_model extends CI_Model {
         $query = $this->db->get('surat');
         return $query->result();
     }
-    
+
     public function get_surat($limit, $start) {
         $this->db->limit($limit, $start);
-        $query = $this->db->get('surat',$limit, $start);
+        $query = $this->db->get('surat');
         return $query->result();
     }
-    
+
     public function count_all(){
         return $this->db->count_all('surat');
     }
@@ -68,5 +59,4 @@ class Surat_model extends CI_Model {
     public function get_count_surat_keluar() {
         return $this->db->count_all('surat');
     }
-    
 }

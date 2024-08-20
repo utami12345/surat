@@ -78,10 +78,8 @@
         background-color: #b1b1d5;
         border-color: #b1b1d5;
     }
-
-    /* Tambahkan margin-top untuk menurunkan kolom pencarian */
     .form-inline .input-group {
-        margin-top: 0px; /* Sesuaikan nilai margin-top sesuai kebutuhan */
+        margin-top: 15px;
         width: 270px;
     }
 
