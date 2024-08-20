@@ -5,16 +5,15 @@ class Surat_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->load->database();  // Ini akan menggunakan grup 'default' secara default
+        $this->load->database(); 
+        $this->load->library('pagination');
     }
 
-    // Function to retrieve all surat records from the database
     public function get_all_surat() {
         $query = $this->db->get('surat');
         return $query->result();
     }
 
-    // Function to add a new surat
     public function insert($data) {
         return $this->db->insert('surat', $data);
     }
@@ -27,9 +26,9 @@ class Surat_model extends CI_Model {
     public function surat_edit($id_surat) {
         $data['surat'] = $this->Surat_model->get_surat_by_id($id_surat);
         if ($data['surat']) {
-            $this->load->view('surat/edit', $data); // Menampilkan formulir edit
+            $this->load->view('surat/edit', $data); 
         } else {
-            show_404(); // Jika tidak ditemukan, tampilkan halaman 404
+            show_404(); 
         }
     }
 
@@ -38,9 +37,36 @@ class Surat_model extends CI_Model {
         return $this->db->update('surat', $data);
     }
 
-    // Function to delete a specific surat by id
-    public function hapus($where, $table) {
-        $this->db->where($where);
-        return $this->db->delete($table);
+    public function hapus($id_surat) {
+        $this->db->where('id_surat', $id_surat);
+        return $this->db->delete('surat');
     }
+
+    public function search_surat($search) {
+        $this->db->like('nomor_surat', $search);
+        $this->db->or_like('tanggal_surat', $search);
+        $this->db->or_like('jenis_surat', $search);
+        $this->db->or_like('perihal_surat', $search);
+        $query = $this->db->get('surat');
+        return $query->result();
+    }
+    
+    public function get_surat($limit, $start) {
+        $this->db->limit($limit, $start);
+        $query = $this->db->get('surat',$limit, $start);
+        return $query->result();
+    }
+    
+    public function count_all(){
+        return $this->db->count_all('surat');
+    }
+
+    public function get_count_surat_masuk() {
+        return $this->db->count_all('suratm');
+    }
+
+    public function get_count_surat_keluar() {
+        return $this->db->count_all('surat');
+    }
+    
 }
